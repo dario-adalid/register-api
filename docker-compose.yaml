@@ -1,0 +1,24 @@
+services:
+  sqlserver:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    environment:
+      ACCEPT_EULA: "y"
+      SA_PASSWORD: "pa55word!"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+  registerapi:
+    image: veggiecat/registerapi
+    ports:
+      - "8080:80"
+      - "8081:443"
+    depends_on:
+      - "sqlserver"
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "7007"
+      ASPNETCORE_HTTP_PORT: "80"
+      ASPNETCORE_ENVIRONMENT: Development
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/

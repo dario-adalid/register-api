@@ -1,0 +1,24 @@
+#Ignore all .dll files
+*.dll
+
+#Ignore all .txt files
+*.txt
+
+
+#Ignore everything from bin folder
+obj/Debug/*
+obj/Debug/*/*
+
+obj/*.*
+obj/*/*.*
+obj/*/*/*.*
+
+.vs/*/*
+bin/Debug/*
+bin/Debug/*/*
+bin/Debug/*/*/*
+bin/Debug/net6.0-windows/
+
+bin/Release/*/*
+
+Migrations/*.*
